@@ -39,5 +39,6 @@ public class SysUser {
     @Basic(fetch = FetchType.EAGER)
     private String myself;
 
+    private Long deptId;
 
 }

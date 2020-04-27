@@ -17,7 +17,10 @@ import javax.persistence.Table;
 public class Road {
     @Id
     @GeneratedValue
-    private String id;
+    private Long id;
 
     private String name;
+
+    private Long deptId;
+
 }
