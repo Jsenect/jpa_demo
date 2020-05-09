@@ -1,13 +1,13 @@
 package com.gx.jpa_springboot_dome.controller;
 
 import com.gx.jpa_springboot_dome.entity.Dept;
-import com.gx.jpa_springboot_dome.entity.SysUser;
+import com.gx.jpa_springboot_dome.entity.Factory;
 import com.gx.jpa_springboot_dome.service.DeptService;
-import com.gx.jpa_springboot_dome.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,27 +16,23 @@ import java.util.List;
  * @Date 2020/4/22 14:10
  */
 @RestController
-@RequestMapping("/dept")
-public class DeptController {
+@RequestMapping("/factory")
+public class FactoryController {
 
     @Autowired
     private DeptService deptService;
 
     @RequestMapping("/list")
-    public List<Dept> findAll() {
-        return deptService.findAll();
-    }
-
-    @RequestMapping("/all")
-    public Object finddept() {
-        HashMap<String, Object> hashMap = new HashMap<>();
-
-        hashMap.put("张三", 11);
-        hashMap.put("李四", 12);
-        hashMap.put("王五", 13);
+    public List<Factory> findAll() {
+        ArrayList<Factory> arrayList = new ArrayList<>();
 
 
-        return hashMap;
+        Factory factory = new Factory("航天", 1);
+        Factory factory1 = new Factory("航天2", 23);
+        arrayList.add(factory);
+        arrayList.add(factory1);
+        return arrayList;
+
     }
 
 

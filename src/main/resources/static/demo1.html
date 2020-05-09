@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="jquery-2.2.3.min.js"></script>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+<div id="frameContent" class="content-wrapper" style="margin-left:0px;">
+    <section class="content-header">
+        <h1>
+            统计分析
+            <small>厂家销量统计</small>
+        </h1>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div id="main" style="width: 600px;height:400px;"></div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    console.log(myChart)
+    // 指定图表的配置项和数据
+    $.get('http://127.0.0.1:8080/factory/list').done(function (data) {
+        // List<Map>
+        // data=[{name:ss,value:1},{name:ss,value:1},{name:ss,value:1}]
+        let titles = [];
+        let nums = [];
+        for (let i = 0; i < data.length; i++) {
+            titles[i] = data[i].name;
+            nums[i] = data[i].num;
+        }
+        console.log(titles, data);
+        console.log(nums);
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption({
+            xAxis: {
+                type: 'category',
+                data: titles
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data:nums,
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(220, 220, 220, 0.8)'
+                }
+            }]
+        })
+    });
+</script>
+</body>
+</html>
